@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import pickle
 
 st.write("""
@@ -18,13 +17,42 @@ st.sidebar.header('Quels sont vos critères?')
 
 
 def user_input_features():
-    Age = st.sidebar.slider('Ancienneté du bien', int(X.Age.min()), int(X.Age.max()), int(X.Age.mean()))
-    LotArea = st.sidebar.slider('Surface totale', int(X.LotArea.min()), int(X.LotArea.max()), int(X.LotArea.mean()))
-    GrLivArea = st.sidebar.slider('Surface au sol', int(X.GrLivArea.min()), int(X.GrLivArea.max()), int(X.GrLivArea.mean()))
-    LotFrontage = st.sidebar.slider('Taille de la façade', int(X.LotFrontage.min()), int(X.LotFrontage.max()), int(X.LotFrontage.mean()))
-    GarageArea = st.sidebar.slider('Taille du garage', int(X.GarageArea.min()), int(X.GarageArea.max()), int(X.GarageArea.mean()))
-    Fence = st.sidebar.select_slider('Présence de barrières', options=[False, True])
-    Pool = st.sidebar.select_slider('Piscine souhaitée?', options=[False, True])
+    Age = st.sidebar.slider(
+        'Ancienneté du bien',
+        int(X.Age.min()),
+        int(X.Age.max()),
+        int(X.Age.mean())
+    )
+    LotArea = st.sidebar.slider(
+        'Surface totale',
+        int(X.LotArea.min()),
+        int(X.LotArea.max()),
+        int(X.LotArea.mean())
+    )
+    GrLivArea = st.sidebar.slider(
+        'Surface au sol',
+        int(X.GrLivArea.min()),
+        int(X.GrLivArea.max()),
+        int(X.GrLivArea.mean())
+    )
+    LotFrontage = st.sidebar.slider(
+        'Taille de la façade',
+        int(X.LotFrontage.min()),
+        int(X.LotFrontage.max()),
+        int(X.LotFrontage.mean())
+    )
+    GarageArea = st.sidebar.slider(
+        'Taille du garage',
+        int(X.GarageArea.min()),
+        int(X.GarageArea.max()),
+        int(X.GarageArea.mean())
+    )
+    Fence = st.sidebar.select_slider(
+        'Présence de barrières', options=[False, True]
+    )
+    Pool = st.sidebar.select_slider(
+        'Piscine souhaitée?', options=[False, True]
+    )
 
     data = {'Age': Age,
             'GrLivArea': GrLivArea,
@@ -32,10 +60,11 @@ def user_input_features():
             'LotArea': LotArea,
             'GarageArea': GarageArea,
             'Fence': Fence,
-            'Pool' : Pool
+            'Pool': Pool
             }
     features = pd.DataFrame(data, index=[0])
     return features
+
 
 df = user_input_features()
 
